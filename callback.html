@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schwab API Authorization</title>
+    <script>
+        // Extract the authorization code from URL
+        function getAuthCode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            
+            // Display the code for user to copy
+            if (code) {
+                document.getElementById('authCode').textContent = code;
+                document.getElementById('codeContainer').style.display = 'block';
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+        
+        window.onload = getAuthCode;
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .code { font-family: monospace; padding: 10px; background-color: #f4f4f4; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Schwab API Authorization</h1>
+        <div id="codeContainer" style="display:none">
+            <p>Authorization successful! Copy the code below to use in your application:</p>
+            <div class="code" id="authCode"></div>
+            <p>You can close this window after copying the code.</p>
+        </div>
+        <div id="error" style="display:none">
+            <p>No authorization code found. Please try again.</p>
+        </div>
+    </div>
+</body>
+</html>
